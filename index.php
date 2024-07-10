@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '\src\helper.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -10,9 +11,13 @@
     <title>Document</title>
 </head>
 <body>
+    <?php if (empty($_SESSION['user'])) :?>
     <header>
         <a href="login.php">Авторизация</a>
         <a href="register.php">Регистрация</a>
     </header>
+    <?php else: ?>
+        <a href="src/actions/logout.php">Выйти из аккаунта</a>
+    <?php endif?>
 </body>
 </html>

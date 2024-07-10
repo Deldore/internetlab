@@ -44,3 +44,5 @@ try {
 } catch (\Exception $e) {
     die($e->getMessage());
 }
+
+redirect('../../login.php');
