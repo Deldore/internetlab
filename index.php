@@ -11,7 +11,8 @@
 </head>
 <body>
     <header>
-        <a href="/login.php">Login</a>
+        <a href="login.php">Авторизация</a>
+        <a href="register.php">Регистрация</a>
     </header>
 </body>
 </html>
