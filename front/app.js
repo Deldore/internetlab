@@ -7,6 +7,7 @@ async function getAllUsers () {
         '<th>ID</th>' +
         '<th>Name</th>' +
         '<th>Email</th>' +
+        '<th></th>' +
         '</tr>';
     await users.forEach((user) => {
             str += '' +
@@ -14,6 +15,7 @@ async function getAllUsers () {
                     '<td>'+ user.id +'</td>' +
                     '<td>'+ user.name +'</td>' +
                     '<td>'+ user.email +'</td>' +
+                    '<td><a href="#" onclick="makeUpdateForm('+ user.id +')">Изменить</a></td>' +
                 '</tr>';
             allUsers = [...allUsers, user];
         }
@@ -71,6 +73,57 @@ async function createNewUser () {
             if (data.message.password) document.getElementById('passwordMessage').innerText = data.message.password;
         }
     }
+}
+
+function makeUpdateForm (id) {
+    let updateUser = 'none';
+    allUsers.forEach((user) => {
+        if (user.id === id) {
+            return updateUser = user;
+        }
+    })
+    if (updateUser === 'none') return alert('Пользователь не найден')
+    document.getElementById('formUpdate').style.display = '';
+    document.getElementById('nameUpdate').value = updateUser.name;
+    document.getElementById('emailUpdate').value = updateUser.email;
+    document.getElementById('updateUserId').value = updateUser.id;
+}
+
+async function updateUser () {
+    const id = document.getElementById('updateUserId').value;
+    const name = document.getElementById('nameUpdate').value;
+    const email = document.getElementById('emailUpdate').value;
+    const password = document.getElementById('passwordUpdate').value;
+
+    document.getElementById('nameMessageUpdate').innerText = '';
+    document.getElementById('emailMessageUpdate').innerText = '';
+    document.getElementById('passwordMessageUpdate').innerText = '';
+
+    let body = {
+        name: name,
+        email: email,
+        password: password,
+    }
+
+    const res = await fetch(`http://localhost/sites/internetlab/users/${id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(body)
+    });
+
+    const data = await res.json();
+    if (data.status) {
+        getAllUsers();
+        document.getElementById('formUpdate').style.display = 'none';
+    } else {
+        if (res.status == 500) {
+            alert(data.message)
+        } else {
+            if (data.message.name) document.getElementById('nameMessageUpdate').innerText = data.message.name;
+            if (data.message.email) document.getElementById('emailMessageUpdate').innerText = data.message.email;
+            if (data.message.password) document.getElementById('passwordMessageUpdate').innerText = data.message.password;
+        }
+    }
+
 }
 
 getAllUsers()

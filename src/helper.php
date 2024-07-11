@@ -149,7 +149,8 @@ function updateUser($id, $data) : void
     $params = [
         ':name' => $name,
         ':email' => $email,
-        ':password' => password_hash($password, PASSWORD_DEFAULT)
+        ':password' => password_hash($password, PASSWORD_DEFAULT),
+        ':id' => $id
     ];
     $stmt = $pdo->prepare($query);
     try {

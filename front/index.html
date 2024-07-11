@@ -16,7 +16,7 @@
             color: #FFF;
         }
         td {
-            background: #999;
+            background: #CCC;
             min-width: 100px;
         }
     </style>
@@ -57,6 +57,30 @@
     </label>
     <button onclick="createNewUser()">Создать</button>
 </div>
+
+<div id="formUpdate" style="display: none">
+    <h1>Update User</h1>
+    <label>
+        Name <br>
+        <input id="nameUpdate">
+        <span id="nameMessageUpdate"></span>
+    </label>
+    <br>
+    <label>
+        Email <br>
+        <input id="emailUpdate">
+        <span id="emailMessageUpdate"></span>
+    </label>
+    <br>
+    <label>
+        Password <br>
+        <input id="passwordUpdate">
+        <span id="passwordMessageUpdate"></span>
+    </label>
+    <input id="updateUserId" style="display: none">
+    <button onclick="updateUser()">Обновить</button>
+</div>
+
 <script src="app.js"></script>
 </body>
 </html>
