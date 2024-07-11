@@ -45,4 +45,4 @@ try {
     die($e->getMessage());
 }
 
-redirect('../../login.php');
+redirect('../../auth');

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+        }
+        table {
+            display: flex;
+            align-self: center;
+        }
+        th {
+            background: #555;
+            min-width: 100px;
+            color: #FFF;
+        }
+        td {
+            background: #999;
+            min-width: 100px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <table id="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+    </table>
+</div>
+<div id="form">
+    <h1>Create new User</h1>
+    <label>
+        Name <br>
+        <input id="name">
+        <span id="nameMessage"></span>
+    </label>
+    <br>
+    <label>
+        Email <br>
+        <input id="email">
+        <span id="emailMessage"></span>
+    </label>
+    <br>
+    <label>
+        Password <br>
+        <input id="password">
+        <span id="passwordMessage"></span>
+    </label>
+    <button onclick="createNewUser()">Создать</button>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
