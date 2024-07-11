@@ -170,3 +170,29 @@ function updateUser($id, $data) : void
         echo json_encode($res);
     }
 }
+
+function deleteUser(int $id) : void
+{
+    $pdo = getPDO();
+    $query = 'DELETE FROM users WHERE id = :id';
+    $params = [
+        ':id' => $id
+    ];
+    $stmt = $pdo->prepare($query);
+    try {
+        $result = $stmt->execute($params);
+        http_response_code(200);
+        $res = [
+            'status' => true,
+            'message' => 'User was deleted'
+        ];
+        echo json_encode($res);
+    } catch (\Exception $e) {
+        http_response_code(500);
+        $res = [
+            'status' => false,
+            'message' => $e->getMessage()
+        ];
+        echo json_encode($res);
+    }
+}

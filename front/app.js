@@ -8,6 +8,7 @@ async function getAllUsers () {
         '<th>Name</th>' +
         '<th>Email</th>' +
         '<th></th>' +
+        '<th></th>' +
         '</tr>';
     await users.forEach((user) => {
             str += '' +
@@ -16,6 +17,7 @@ async function getAllUsers () {
                     '<td>'+ user.name +'</td>' +
                     '<td>'+ user.email +'</td>' +
                     '<td><a href="#" onclick="makeUpdateForm('+ user.id +')">Изменить</a></td>' +
+                    '<td><a href="#" onclick="deleteUser('+ user.id +')">Удалить</a></td>' +
                 '</tr>';
             allUsers = [...allUsers, user];
         }
@@ -124,6 +126,18 @@ async function updateUser () {
         }
     }
 
+}
+
+async function deleteUser(id) {
+    const res = await fetch(`http://localhost/sites/internetlab/users/${id}`, {
+        method: 'DELETE',
+    });
+    const data = await res.json();
+    if (data.status) {
+        getAllUsers();
+    } else {
+        alert(data.message);
+    }
 }
 
 getAllUsers()

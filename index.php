@@ -30,6 +30,9 @@ switch ($type) {
                         $data = json_decode(file_get_contents('php://input'), true);
                         updateUser($id, $data);
                         break;
+                    case 'DELETE':
+                        deleteUser($id);
+                        break;
                 }
         }
         break;
